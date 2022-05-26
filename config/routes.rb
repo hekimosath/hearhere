@@ -6,4 +6,10 @@ Rails.application.routes.draw do
   # root "articles#index"
   get "home/top" => "home#top"
   get "/" => "home#top"
+  #ログイン・ログアウト系
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  get '/logout',  to: 'sessions#destroy'
+  get '/register', to: 'sessions#register'
+  post '/register', to: 'sessions#createuser'
 end

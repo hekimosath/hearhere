@@ -1,6 +1,6 @@
 <header>
     <div>
-        HearHere
+        <%= link_to "HearHere", "/" %>
     </div>
     <div>
         <%= form_with do |form| %>
@@ -13,7 +13,16 @@
     <div>
         新規登録
     </div>
+    <% if logged_in? %>
+    <!--ログイン時-->
     <div>
-        ログイン
+        <%= link_to "ログアウト", logout_path, method: :delete %>
     </div>
+    <% else %>
+    <!--未ログイン時-->
+    <div>
+        <%= link_to "ログイン", login_path, method: :delete %>
+    </div>
+    <% end %>
+    
 </header>
