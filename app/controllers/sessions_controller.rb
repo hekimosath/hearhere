@@ -22,6 +22,19 @@ class SessionsController < ApplicationController
   end
 
   def createuser
-    redirect_to "/"
+    user = User.find_by(email: params[:session][:email].downcase)
+    #登録済みメールアドレスだった場合
+    if user
+      raise "登録済みメールアドレスです"
+    else
+      User.create(name: params[:session][:name],email: params[:session][:email].downcase,password: params[:session][:password],password_confirmation: params[:session][:password])
+      user = User.find_by(email: params[:session][:email].downcase)
+      if user && user.authenticate(params[:session][:password])
+        log_in user
+        redirect_to "/"
+      else
+        render 'new'
+      end
+    end
   end
 end

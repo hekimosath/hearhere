@@ -11,12 +11,15 @@
         質問する
     </div>
     <div>
-        新規登録
+        <%= link_to register_path do %>
+        <div>新規登録</div>
+        <% end %>
     </div>
     <% if logged_in? %>
     <!--ログイン時-->
     <div>
         <%= link_to "ログアウト", logout_path, method: :delete %>
+        ログインユーザー：<%= current_user.name %>
     </div>
     <% else %>
     <!--未ログイン時-->
