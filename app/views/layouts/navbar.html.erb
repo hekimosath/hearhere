@@ -4,11 +4,13 @@
     </div>
     <div>
         <%= form_with do |form| %>
-            <%= form.text_field :email %>
+            <%= form.text_field :search, :placeholder => "検索" %>
         <% end %>
     </div>
     <div>
-        質問する
+        <%= link_to questions_create_path do %>
+        <div>質問する</div>
+        <% end %>
     </div>
     <div>
         <%= link_to register_path do %>

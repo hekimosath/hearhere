@@ -1,2 +1,12 @@
-<h1>Questions#new</h1>
-<p>Find me in app/views/questions/new.html.erb</p>
+<% if logged_in? %>
+    <%= render 'shared/new_question' %>
+<% else %>
+    ユーザ登録して質問しましょう。
+    <%= link_to register_path do %>
+    <div>新規登録</div>
+    <% end %>
+    登録済みならログインして質問
+    <div>
+        <%= link_to "ログイン", login_path, method: :delete %>
+    </div>
+<% end %>

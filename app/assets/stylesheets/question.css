@@ -1,0 +1,56 @@
+.title_input_area {
+    width:100%;
+    height:40px;
+    color:gray;
+    background:#FFFAFAFA;
+    border-bottom: 1px solid #000;
+}
+.tag_input_area {
+    width:100%;
+    height:40px;
+    color:gray;
+    background:#FFFAFAFA;
+    border-bottom: 1px solid #000;
+}
+.left-column,
+.right-column {
+    width:50%;
+    height:calc(100vh - 160px);
+}
+.left-column {
+    background: #FFF0F0;
+    border-right: #000 1px solid;
+}
+.right-column {
+    background: #FFF0F0;
+}
+.title_input_area input,
+.tag_input_area input,
+.left-column textarea {
+    width:100%;
+    height:calc(100% - 1px);
+}
+.title_input_area input {
+    font-size:1.5rem;
+}
+.tag_input_area input {
+    font-size:0.8rem;
+}
+.question_submit {
+    margin-right: 10px;
+    width:100px;
+    height:30px;
+}
+/*デフォルトフッターはCSSで非表示*/
+footer {
+ display:none !important;
+}
+/*質問ページ専用フッター*/
+.footer_submit_area {
+    position:fixed;
+    bottom:0;
+    height:40px;
+    width:100%;
+    background:gray;
+    justify-content: flex-end;
+}

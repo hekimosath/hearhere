@@ -6,6 +6,8 @@ class QuestionsController < ApplicationController
 
   def create
     #質問作成POST受け取り
+    Question.create(user_id: session[:user_id],title: params[:question][:title],detail: params[:question][:detail])
+
   end
 
   def complete
