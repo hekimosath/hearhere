@@ -18,7 +18,12 @@ Rails.application.routes.draw do
   get '/questions/create', to: 'questions#new'
   post '/questions/create', to: 'questions#create'
   get '/questions/complete', to: 'questions#complete'
+  get '/questions/view', to: 'questions#view'
+  get '/questions/view/:id', to: 'questions#view'
   get '/questions/list', to: 'questions#list'
   get '/questions/answer', to: 'questions#answer'
   post '/questions/answer', to: 'questions#answer_crate'
+
+  #ルーティングに合致しなければ404
+  get '*path', controller: 'application', action: 'render_404'
 end

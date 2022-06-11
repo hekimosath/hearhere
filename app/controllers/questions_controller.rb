@@ -10,6 +10,15 @@ class QuestionsController < ApplicationController
 
   end
 
+  def view
+    #質問詳細画面
+    @question_data = Question.joins(:user).select("questions.*, users.*").find_by(id: params[:id])
+    # p @question_data
+    unless @question_data
+      render_404
+    end
+  end
+
   def complete
     #作成完了
   end
