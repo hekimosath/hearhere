@@ -1,4 +1,62 @@
-<%= @question_data[:user_id] %>
-<%= @question_data[:title] %>
-<%= @question_data[:detail] %>
-<%= @question_data[:name] %>
+<%= stylesheet_link_tag "question_detail", :media => "all" %>
+<div class="question_detail_header content_parent flex-parent">
+    <div class="header_content flex-parent">
+        <h1><%= @question_data[:title] %></h1>
+        <div class="questioner_info">
+            <%= @question_data[:user_id] %><%= @question_data[:name] %>
+        </div>
+    </div>
+</div>
+<div class="question_detail_header content_parent flex-parent">
+    <div class="header_content flex-parent ">
+        <div class="numbers">
+            <span>0</span>
+            <span class="unit_chara">回答</span>
+        </div>
+        <div class="numbers">
+            <span>0</span>
+            <span class="unit_chara">いいね</span>
+        </div>
+        <div class="numbers">
+            <span>0</span>
+            <span class="unit_chara">閲覧</span>            
+        </div>
+        <div class="numbers">
+            <span>投稿日</span>
+            <span><%=@question_data[:created_at] %></span>
+        </div>
+    </div>
+</div>
+<div class="question_detail_main content_parent flex-parent">
+    <div class="main_content">
+
+        <%= simple_format(@question_data[:detail]) %>
+
+    </div>
+</div>
+<div class="question_detail_answers content_parent flex-parent">
+    <div class="answers_content flex-parent">
+        <% if true then %>
+        <div class="no_answer">
+            まだ回答はありません。
+        </div>
+
+        <% else %>
+        回答があるらしいお
+        <% end %>
+    </div>
+</div>
+<div class="question_detail_action content_parent flex-parent">
+    <div class="action_content flex-parent">
+        <%= form_for(:answer, url: questions_create_path) do |f| %>
+        <div class="flex-parent">
+            <div class="answer_textarea">
+                <%= f.text_area :detail, :placeholder => "内容を入力" %>
+            </div>
+        </div>
+        <div class="answer_submit_area flex-parent">
+            <%= f.submit "回答する",:class => "answer_submit button_default" %>
+        </div>
+        <% end %>
+    </div>
+</div>

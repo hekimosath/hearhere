@@ -13,6 +13,10 @@
 <div class="test_links">
 <h1>テストのためのリンク集</h1>
 <%= link_to '/questions/view/1', '/questions/view/1' %>
+<% @question_data.each do |val| %>
+    <%= link_to '/questions/view/' + val[:id].to_s, '/questions/view/' + val[:id].to_s %>
+    <br>
+<% end %>
 </div>
 
 
