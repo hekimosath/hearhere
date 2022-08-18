@@ -12,11 +12,19 @@ class QuestionsController < ApplicationController
 
   def view
     #質問詳細画面
-    @question_data = Question.joins(:user).select("questions.*, users.*").find_by(id: params[:id])
+    logged_in_user
+    @question_data = Question.joins(:user).find_by(id: params[:id])
     # p @question_data
     unless @question_data
       render_404
     end
+    @answers = []
+    @answer_threads = AnswerThread.joins(:answer).where(question_id: params[:id]).all
+    @answer_threads.each do |val|
+      answer = Answer.joins(:user).where(answer_thread_id: val[:id]).all
+      @answers.push(answer)
+    end
+    p @answers
   end
 
   def complete
@@ -33,5 +41,8 @@ class QuestionsController < ApplicationController
 
   def answer_create
     #回答POST受け取り
+    p params
+    insert_data = AnswerThread.create(create_user_id: session[:user_id],question_id: params[:question][:question_id],)
+    Answer.create!(answer_thread_id: insert_data[:id],user_id: session[:user_id],status: "1",detail: params[:question][:detail])
   end
 end

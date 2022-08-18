@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     #Relations
     has_many :questions, dependent: :destroy
-
+    has_many :answer_threads, dependent: :destroy, foreign_key: 'create_user_id'
     has_secure_password
     #name
     validates :name, {presence: true}

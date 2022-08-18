@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_27_111251) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_12_004130) do
+  create_table "answer_threads", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "create_user_id"
+    t.integer "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "answers", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "answer_thread_id"
+    t.integer "user_id"
+    t.integer "status"
+    t.text "detail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "question_tag_maps", charset: "utf8mb4", force: :cascade do |t|
     t.integer "question_id"
     t.integer "tag_id"

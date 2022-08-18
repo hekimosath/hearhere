@@ -19,7 +19,7 @@
         </div>
         <div class="numbers">
             <span>0</span>
-            <span class="unit_chara">閲覧</span>            
+            <span class="unit_chara">閲覧</span>
         </div>
         <div class="numbers">
             <span>投稿日</span>
@@ -35,26 +35,38 @@
     </div>
 </div>
 <div class="question_detail_answers content_parent flex-parent">
+    <% unless @answers[0] then %>
     <div class="answers_content flex-parent">
-        <% if true then %>
         <div class="no_answer">
             まだ回答はありません。
         </div>
-
-        <% else %>
-        回答があるらしいお
+    </div>
+    <% else %>
+    <div class="answers_content">
+        <% @answers.each do |answer| %>
+        <h3>thread</h3>
+            <% answer.each do |val| %>
+            <div class="">
+                ID:<%= val[:id] %>
+                USER_ID:<%= val[:user_id] %>
+                <%= simple_format(val[:detail]) %>
+            </div>
+            <% end %>
         <% end %>
     </div>
+    <% end %>
 </div>
 <div class="question_detail_action content_parent flex-parent">
     <div class="action_content flex-parent">
-        <%= form_for(:answer, url: questions_create_path) do |f| %>
+        <%= form_for(:question, url: questions_answer_path, local: true) do |f| %>
         <div class="flex-parent">
             <div class="answer_textarea">
                 <%= f.text_area :detail, :placeholder => "内容を入力" %>
             </div>
         </div>
         <div class="answer_submit_area flex-parent">
+            <%= f.hidden_field :create_user_id, :value => current_user.id %>
+            <%= f.hidden_field :question_id, :value => @question_data[:id] %>
             <%= f.submit "回答する",:class => "answer_submit button_default" %>
         </div>
         <% end %>
