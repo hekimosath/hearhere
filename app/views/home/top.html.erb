@@ -14,7 +14,7 @@
 <h1>テストのためのリンク集</h1>
 
 <% @question_data.each do |val| %>
-    <%= link_to '/questions/view/' + val[:id].to_s, '/questions/view/' + val[:id].to_s %>
+    <%= link_to val[:title] + '（id:' + val[:id].to_s + '）', '/questions/view/' + val[:id].to_s %>
     <br>
 <% end %>
 </div>

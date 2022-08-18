@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_12_004130) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_18_105051) do
   create_table "answer_threads", charset: "utf8mb4", force: :cascade do |t|
     t.integer "create_user_id"
     t.integer "question_id"
@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_004130) do
     t.text "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|

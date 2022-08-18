@@ -1,13 +1,13 @@
 <%= stylesheet_link_tag "question", :media => "all" %>
 <section>
-    <%= form_for(:question, url: questions_create_path) do |f| %>
+    <%= form_with(url: questions_create_path, local: true) do |f| %>
     <div class="title_input_area">
         <%= f.text_field :title, :placeholder => "タイトルを入力" %>
     </div>
     <div class="tag_input_area">
         <%= f.text_field :tag, :placeholder => "タグを入力（未実装）" %>
     </div>
-    <div class="flex-parent">
+    <div cl ass="flex-parent">
         <div class="left-column">
             <%= f.text_area :detail, :placeholder => "内容を入力" %>
         </div>

@@ -6,8 +6,11 @@ class QuestionsController < ApplicationController
 
   def create
     #質問作成POST受け取り
-    Question.create(user_id: session[:user_id],title: params[:question][:title],detail: params[:question][:detail])
-
+    question = Question.create(user_id: session[:user_id],title: params[:title],detail: params[:detail],status: Question::STATUS_ACCEPTING)
+    p "---------"
+    p question
+    p "---------"
+    redirect_to action: :complete, id: question[:id]
   end
 
   def view
@@ -29,6 +32,7 @@ class QuestionsController < ApplicationController
 
   def complete
     #作成完了
+    @question_id = params[:id]
   end
 
   def list
@@ -43,6 +47,9 @@ class QuestionsController < ApplicationController
     #回答POST受け取り
     p params
     insert_data = AnswerThread.create(create_user_id: session[:user_id],question_id: params[:question][:question_id],)
-    Answer.create!(answer_thread_id: insert_data[:id],user_id: session[:user_id],status: "1",detail: params[:question][:detail])
+    Answer.create(answer_thread_id: insert_data[:id],user_id: session[:user_id],status: "1",detail: params[:question][:detail])
+    redirect_to action: :view,id: params[:question][:question_id]
   end
+
+
 end
